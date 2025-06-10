@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="color-scheme" content="light only">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wedding Of Marisa & Bayu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    .hero-video {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content-section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Style untuk kontainer slide secara umum */
+    .slide-container {
+      width: 100vw;               /* Menggunakan lebar layar penuh */
+      height: auto;               /* Tinggi kontainer disesuaikan secara otomatis */
+      overflow: hidden;           /* Menyembunyikan bagian video yang melebihi kontainer */
+      position: relative;
+    }
+
+    /* Style untuk video dalam kontainer slide */
+    .slide-container video {
+      width: 100%;                /* Video akan memenuhi lebar kontainer */
+      height: auto;               /* Menyesuaikan tinggi agar sesuai dengan lebar */
+      object-fit: contain;        /* Menjaga rasio video tanpa distorsi */
+    }
+
+    /* Kontainer khusus untuk video p3 */
+    .p3-container {
+      width: 100vw;               /* Lebar kontainer 100% dari layar */
+      height: auto;               /* Tinggi otomatis untuk mengakomodasi video */
+    }
+
+    /* Style khusus untuk video p3 */
+    .p3-video {
+      width: 1080px;              /* Menampilkan lebar asli video p3 */
+      height: 3840px;             /* Menampilkan tinggi asli video p3 */
+      object-fit: contain;        /* Menyesuaikan video dengan lebar kontainer tanpa distorsi */
+      margin: 0 auto;             /* Menjaga video tetap terpusat */
+    }
+
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .countdown-section {
+  position: relative;
+}
+
+.countdown-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 10;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3); /* opsional untuk efek gelap */
+}
+
+.countdown-boxes {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  min-width: 70px;
+}
+
+.box div {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.box span {
+  font-size: 1rem;
+  display: block;
+  margin-top: 5px;
+}
+
+.countdown-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+video {
+  display: block;
+}
+
+.save-date-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #ffffffcc;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.save-date-btn:hover {
+  background-color: #ffffff;
+}
+
+/* Untuk layar kecil (HP, iPhone, Android) */
+@media (max-width: 480px) {
+  .countdown-text {
+    font-size: 1.2rem;
+    padding: 6px 16px;
+  }
+
+  .countdown-boxes {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .box {
+    padding: 10px 14px;
+    min-width: 60px;
+  }
+
+  .box div {
+    font-size: 1.5rem;
+  }
+
+  .box span {
+    font-size: 0.85rem;
+  }
+
+  .save-date-btn {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+/* Untuk layar menengah (tablet dan HP besar) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .countdown-text {
+    font-size: 1.4rem;
+  }
+
+  .countdown-boxes {
+    gap: 12px;
+  }
+
+  .box {
+    padding: 12px 18px;
+    min-width: 65px;
+  }
+
+  .box div {
+    font-size: 1.8rem;
+  }
+
+  .box span {
+    font-size: 0.95rem;
+  }
+
+  .save-date-btn {
+    font-size: 1rem;
+    padding: 12px 22px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Musik Latar -->
+  <audio id="bgMusic" src="../bahan/0511.MP3" autoplay loop></audio>
+
+  <!-- Video 1 (Hero Section) -->
+<div class="hero-video">
+  <video src="../bahan/hal1.mp4" muted autoplay playsinline></video>
+</div>
+
+  <!-- Konten Scrollable (Video 2 - 9) -->
+  <div class="content-section">
+    <div class="slide-container">
+      <video src="../bahan/hal2.mp4" muted playsinline preload="metadata"></video>
+    </div>
+    
+    <div class="slide-container p3-container">
+      <video src="../bahan/wd2.mp4" muted playsinline class="p3-video" preload="metadata"></video>
+    </div>
+    
+    <div class="slide-container countdown-section">
+  <video src="../bahan/hal4.mp4" muted playsinline preload="metadata"></video>
+  <div class="countdown-overlay">
+    <div class="countdown-text">COUNTING THE DAYS</div>
+    <div class="countdown-boxes">
+      <div class="box">
+        <div id="days">00</div>
+        <span>Hari</span>
+      </div>
+      <div class="box">
+        <div id="hours">00</div>
+        <span>Jam</span>
+      </div>
+      <div class="box">
+        <div id="minutes">00</div>
+        <span>Menit</span>
+      </div>
+      <div class="box">
+        <div id="seconds">00</div>
+        <span>Detik</span>
+      </div>
+    </div>
+
+    <!-- Tombol Save the Date (Google Calendar) -->
+    <a 
+  href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=The+Wedding+Of+Bayu+%26+Marisa&dates=20250621T040000Z/20250621T100000Z&details=Akad+Nikah+Jam+11.00%2C+Resepsi+12.00-17.00+WIB&location=https%3A%2F%2Fgoo.gl%2Fmaps%2Fhv6t364YEfjiHsYN7" 
+  class="save-date-btn" 
+  target="_blank">
+  Save the Date
+</a>
+
+  </div>
+</div>
+
+   <a href="https://goo.gl/maps/hv6t364YEfjiHsYN7" target="_blank" style="display: block;">
+  <div class="slide-container" style="cursor: pointer;">
+    <video src="../bahan/hal5.mp4" muted playsinline preload="metadata"></video>
+  </div>
+</a>
+    <div class="slide-container">
+      <video src="../bahan/hal6.mp4" muted playsinline preload="metadata"></video>
+    </div>
+    <div class="slide-container">
+      <video src="../bahan/hal7.mp4" muted playsinline preload="metadata"></video>
+    </div>
+     <div class="slide-container">
+      <video src="../bahan/hal88.mp4" muted playsinline preload="metadata"></video>
+    </div>
+     <div class="slide-container">
+      <video src="../bahan/hal9.mp4" muted playsinline preload="metadata"></video>
+    </div>
+  </div>
+
+  <!-- Kontrol Musik -->
+  <div class="audio-control" onclick="toggleMusic()">🔊</div>
+
+  <script>
+  const audio = document.getElementById("bgMusic");
+  const control = document.querySelector(".audio-control");
+
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play();
+      control.textContent = "🔊";
+    } else {
+      audio.pause();
+      control.textContent = "🔇";
+    }
+  }
+
+  // Auto-play music saat pertama kali di-click
+  window.addEventListener("click", () => {
+    audio.play().catch(() => {});
+  }, { once: true });
+
+  // Play saat fokus ke tab, pause saat tab pindah
+  window.addEventListener("focus", () => {
+    audio.play().catch(() => {});
+  });
+
+  window.addEventListener("blur", () => {
+    audio.pause();
+  });
+
+  // Auto play/pause video dalam slide saat terlihat di viewport
+  const slideVideos = document.querySelectorAll(".content-section .slide-container video");
+
+  const videoObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.play();
+      } else {
+        entry.target.pause();
+        entry.target.currentTime = 0;
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  slideVideos.forEach(video => {
+    videoObserver.observe(video);
+  });
+
+  // Countdown ke tanggal wisuda
+  const targetDate = new Date("2025-06-21T11:00:00").getTime();
+
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) return;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = String(days).padStart(2, "0");
+    document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+  };
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
